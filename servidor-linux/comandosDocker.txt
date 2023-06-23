@@ -1,0 +1,3 @@
+docker build -t webacademy-http .
+
+docker run -d --name webacademy-http -p 7000:7000 webacademy-http
