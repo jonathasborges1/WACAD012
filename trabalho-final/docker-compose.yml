@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   phpmyadmin:
@@ -17,6 +17,7 @@ services:
   bancoMysql:
     image: mysql:latest
     container_name: bancoMysql
+    restart: always
     ports:
       - 3307:3306
     networks:
@@ -24,7 +25,6 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=pass2023
       - MYSQL_DATABASE=livraria
-      - MYSQL_ROOT_HOST='%'
     volumes:
       - ./mysql-data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -44,14 +44,8 @@ services:
     build:
       context: ./webacademy-livros-backend
       dockerfile: Dockerfile
-    image: meubackend:1.0
     container_name: backend
     restart: always
-    healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h bancoMysql -u root -p${MYSQL_ROOT_PASSWORD}"]
-      interval: 5s
-      timeout: 10s
-      retries: 10
     ports:
       - 4444:4444
     networks:
