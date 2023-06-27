@@ -1,9 +1,0 @@
-docker login --username=jonathasborges1
-
-docker build -t webacademy:1.0 .
-
-docker images
-
-docker container run -d -p 3000:3000 webacademy:1.0
-
-docker ps
