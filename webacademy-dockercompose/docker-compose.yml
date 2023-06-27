@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  srvmysql1:
+    image: mysql:5.7
+    container_name: srvmysql1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  srvphpmyadmin: 
+    image: phpmyadmin/phpmyadmin
+    container_name: srvphpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: srvmysql1
+      PMA_PORT: 3306
+      PMA_USER: user
+      PMA_PASSWORD: user
+    ports:
+      - 8080:80
+    networks:
+      - rede_db
+    depends_on:
+      - srvmysql1
+
+networks:
+  rede_db:
+    driver: bridge

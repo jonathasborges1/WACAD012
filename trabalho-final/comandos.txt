@@ -1,0 +1,20 @@
+docker-compose up -d
+
+# apos executar o comando acima, deverar ver todos os 4 containers up
+
+# container phpMyadmin up
+# container frontend up
+# container mysql up
+# container backend up
+
+# aguarde 5s a 15s  para que o backend consiga estabelecer conexao com mysql
+
+# apos todos os containers up voce poderar acessar
+
+# frontend     -> http://localhost:8000/
+# backend      -> http://localhost:4444/
+# phpmyadmin   -> http://localhost:8080/index.php?route=/database/structure&db=livraria
+
+# apos todos os teste voce pode executar
+
+docker-compose down

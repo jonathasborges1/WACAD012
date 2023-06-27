@@ -1,0 +1,21 @@
+docker run -d --name srvmysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=pass2023 mysql
+
+docker exec -it srvmysql /usr/bin/mysql -u root -p
+
+
+create schema if not exists webacademy
+
+create table if not exists alunos (
+   id bigint primary key auto_increment,
+   nome varchar(100) not null
+);
+
+insert into alunos (nome) values ('Jonathas Cavalcante');
+
+
+docker rm -f srvmysql
+
+docker run -d --name srvmysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=pass2023 -v c:\Users\jonathas\Documents\webacademy\WACAD012\servidor-mysql\.docker:/var/lib/mysql mysql
+
+docker run -d --name bdcontainer -p 3306:3306 -e MYSQL_ROOT_PASSWORD=pass2023 -v vol_bdcontainer:/var/lib/mysql mysql
+

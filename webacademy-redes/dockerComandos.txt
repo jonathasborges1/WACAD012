@@ -1,0 +1,20 @@
+docker stop $(docker ps -q)
+docker rm $(docker ps -qa)
+
+docker build -t webacademy-redes .
+
+docker run -d --name ubuntu-rede-1 webacademy-redes
+
+docker run -d --name ubuntu-rede-2 webacademy-redes
+
+docker inspect webacademy-redes-2
+
+docker network create -d bridge rede_webacademy
+
+docker network ls
+
+docker run -d --name webacademy-redes-1 --network rede_webacademy webacademy-redes
+
+docker run -d --name webacademy-redes-2 --network rede_webacademy webacademy-redes
+
+docker exec -it webacademy-redes-1 /bin/bash
